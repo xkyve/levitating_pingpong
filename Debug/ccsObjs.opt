@@ -1,0 +1,1 @@
+-l"./configPkg/linker.cmd" "./main.obj" "./fuzzy.obj" "./TASK_manager.obj" "./PWM_module.obj" "./Interpreter.obj" "./Communication.obj" "./ADC_module.obj" -l"libc.a" "../lnk_msp430g2553.cmd" 

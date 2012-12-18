@@ -1,0 +1,1 @@
+"../ADC_module.c" "../Communication.c" "../Interpreter.c" "../PWM_module.c" "../TASK_manager.c" "../fuzzy.c" "../main.c" "../main.cfg" 
