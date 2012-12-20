@@ -24,32 +24,32 @@ const uint16 lookup[1024] =
 
 void adc_start(void)
 {
-	// ADC Start Conversion - Software trigger
-	ADC10CTL0 |= ADC10SC;
+    // ADC Start Conversion - Software trigger
+    ADC10CTL0 |= ADC10SC;
 }
 
 uint16 get_distance(uint16 value)
 {
-	//get the distance from the lookup table in millimeters
-	return lookup[value];
+    //get the distance from the lookup table in millimeters
+    return lookup[value];
 }
 
 uint16 voltage(uint16 data)
 {
-	uint32 value_mv;
+    uint32 value_mv;
 
-	value_mv = (uint32) data * (uint32) ADC_REF;
-	value_mv = value_mv / 0x03FF;
+    value_mv = (uint32) data * (uint32) ADC_REF;
+    value_mv = value_mv / 0x03FF;
 
-	return (uint16) value_mv;
+    return (uint16) value_mv;
 }
 
 uint16 adc_get_last_result(uint8 opt)
 {
-	if (opt == 0)
-		return result;
+    if (opt == 0)
+        return result;
 
-	return voltage(result);
+    return voltage(result);
 }
 
 /*
@@ -57,6 +57,6 @@ uint16 adc_get_last_result(uint8 opt)
  */
 void ADC10ISRHandler(void)
 {
-	result = ADC10MEM;  //store the result from the ADC
-	regulatorFlag = 1;  //signal a sample has been read
+    result = ADC10MEM;  //store the result from the ADC
+    regulatorFlag = 1;  //signal a sample has been read
 }

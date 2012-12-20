@@ -13,8 +13,8 @@
 
 void blast_startup(void)
 {
-	task_enable(0);     //Enable the ADC task
-	task_disable(1);    //Disable this task
+    task_enable(0);     //Enable the ADC task
+    task_disable(1);    //Disable this task
 }
 
 typedef struct _task_struct
@@ -72,16 +72,16 @@ uint8 task_set_period(uint8 nr, uint16 period)
  */
 void Timer1ACCR0ISRHandler(void)
 {
-	uint8 i;
+    uint8 i;
 
-	for (i = 0; i < NR_TASKS; i++)                  //for every task defined
-		if (task[i].enable)                         //check if the task is enabled
-		{
-			task[i].counter++;                      //increment the task internal counter
-			if (task[i].counter >= task[i].period)  //is it time to execute the task (counter is larger than the defined period)
-			{
-				task[i].counter = 0;                //reset the internal counter
-				(*task[i].name)();                  //execute the task (pointer to function)
-			}
-		}
+    for (i = 0; i < NR_TASKS; i++)                  //for every task defined
+        if (task[i].enable)                         //check if the task is enabled
+        {
+            task[i].counter++;                      //increment the task internal counter
+            if (task[i].counter >= task[i].period)  //is it time to execute the task (counter is larger than the defined period)
+            {
+                task[i].counter = 0;                //reset the internal counter
+                (*task[i].name)();                  //execute the task (pointer to function)
+            }
+        }
 }
