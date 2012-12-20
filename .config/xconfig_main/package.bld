@@ -11,7 +11,7 @@ var makeAssembly = false;
 var Executable = xdc.module('xdc.bld.Executable');
 
 var exeOpts = new Executable.Attrs({
-        cfgScript: 'C:/Data/workdir/msp430/final/main.cfg',
+        cfgScript: 'C:/Data/workdir/msp430/levitating_pingpong/main.cfg',
         profile: 'release',
         cfgHome: 'xconfig_main',
 });
@@ -46,8 +46,8 @@ else {
     var suffix  = '.p' + targ.suffix;
 }
 var thisObj = {
-    cfg:        'C:/Data/workdir/msp430/final/main.cfg',
-    outputPath: 'C:/Data/workdir/msp430/final/.config/xconfig_main',
+    cfg:        'C:/Data/workdir/msp430/levitating_pingpong/main.cfg',
+    outputPath: 'C:/Data/workdir/msp430/levitating_pingpong/.config/xconfig_main',
     exeName:    'main' + suffix,
     exeIntName: 'main' + suffix.replace('.', '_'),
     targ:       targ,

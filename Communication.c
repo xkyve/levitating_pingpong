@@ -27,8 +27,8 @@ void serial_put_signal(uint8 *signalName, int32 value)
 
 void serial_putc(uint8 ch)
 {
-	while (!(IFG2 & UCA0TXIFG)); // Poll TXIFG to until set
-	UCA0TXBUF = ch;
+	while (!(IFG2 & UCA0TXIFG));  //Poll TXIFG to until set
+	UCA0TXBUF = ch;               //Put the character in the transmission buffer
 }
 
 void serial_putstr(uint8 *str)
@@ -36,6 +36,8 @@ void serial_putstr(uint8 *str)
 	uint8 i;
 
 	i = 0;
+
+	//send characters until the end of the string has been reached
 	while (str[i] != '\0')
 	{
 		serial_putc(str[i]);
@@ -47,18 +49,19 @@ void serial_putnr(int32 nr)
 {
 	uint8 i = 0;
 
-	if (nr < 0)
+	if (nr < 0)  //negative number?
 	{
 		serial_putc('-');
 		nr = -nr;
 	}
 
-	if (nr < 10)
+	if (nr < 10) //only one digit to output?
 	{
 		serial_putc(nr + '0');
 		return;
 	}
 
+	//store each digit of the number in an array
 	while (nr > 0)
 	{
 		digit[i] = nr % 10;
@@ -66,6 +69,7 @@ void serial_putnr(int32 nr)
 		i++;
 	}
 
+	//output each digit from the array on serial communication
 	while (i > 0)
 	{
 		i--;
@@ -73,6 +77,10 @@ void serial_putnr(int32 nr)
 	}
 }
 
+/*
+ * Copy the command stored in the buffer to another character array.
+ * Clear the command received flag to signal that another command can be received on serial.
+ */
 uint8 read_cmd(uint8 *cmd)
 {
 	uint8 i;
@@ -98,9 +106,9 @@ void USCIA0RXISRHandler(void)
 
 	//serial_putc(ch);
 
-	if (cmd_recv == 0)
+	if (cmd_recv == 0)       //check if no commands are pending
 	{
-		if (ch != END_CHAR)
+		if (ch != END_CHAR)  //has a full command been received?
 		{
 			cmd_buffer[index_p] = ch;
 			index_p++;

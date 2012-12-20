@@ -17,10 +17,11 @@ void pwm_set_raw(int16 value)
 
 	upper_limit = TA0CCR0;
 
+	//check lower and upper limit
 	if (value > upper_limit) value = upper_limit;
 	if (value < 0) value = 0;
 
-	TA0CCR1 = value;
+	TA0CCR1 = value;  //change the PWM duty cycle
 }
 
 uint8 pwm_set_percent(uint8 value)
@@ -28,7 +29,7 @@ uint8 pwm_set_percent(uint8 value)
 	uint16 upper_limit;
 	uint32 new_value;
 
-	if (value > 100) return 1;
+	if (value > 100) return 1;  //check the upper limit (100%)
 
 	upper_limit = TA0CCR0;
 

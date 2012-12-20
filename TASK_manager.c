@@ -19,10 +19,10 @@ void blast_startup(void)
 
 typedef struct _task_struct
 {
-    uint16 period;
-    void (*name)(void);
-    uint8 enable;
-    uint16 counter;
+    uint16 period;        //Period in milliseconds
+    void (*name)(void);   //Name of the function to be called each period
+    uint8 enable;         //Is this task enable at startup?
+    uint16 counter;       //Internal counter used in the Timer1 interrupt routine
 } task_struct;
 
 task_struct task[NR_TASKS] =
@@ -30,7 +30,7 @@ task_struct task[NR_TASKS] =
   //{PERIOD, NAME, ENABLED?, COUNTER}
 
     {SAMPLE_TIME / TIMER_PERIOD, adc_start, 0, 0},    //Start ADC sampling periodically (currently at 20 ms)
-    {1500 / TIMER_PERIOD, blast_startup, 1, 0}       //Blast the ball at startup, then activate the fuzzy algorithm
+    {1500 / TIMER_PERIOD, blast_startup, 1, 0}       //Blast the ball at startup, then activate the fuzzy algorithm and deactivate this task
 };
 
 uint8 task_enable(uint8 nr)
@@ -74,14 +74,14 @@ void Timer1ACCR0ISRHandler(void)
 {
 	uint8 i;
 
-	for (i = 0; i < NR_TASKS; i++)
-		if (task[i].enable)
+	for (i = 0; i < NR_TASKS; i++)                  //for every task defined
+		if (task[i].enable)                         //check if the task is enabled
 		{
-			task[i].counter++;
-			if (task[i].counter >= task[i].period)
+			task[i].counter++;                      //increment the task internal counter
+			if (task[i].counter >= task[i].period)  //is it time to execute the task (counter is larger than the defined period)
 			{
-				task[i].counter = 0;
-				(*task[i].name)();
+				task[i].counter = 0;                //reset the internal counter
+				(*task[i].name)();                  //execute the task (pointer to function)
 			}
 		}
 }

@@ -7,7 +7,7 @@
         <srcFile name="package/cfg/main_pe430.c"/>
     </sources>
     <configscripts>
-        <srcFile name="C:/Data/workdir/msp430/final/main.cfg"/>
+        <srcFile name="C:/Data/workdir/msp430/levitating_pingpong/main.cfg"/>
     </configscripts>
     <makefiles>
         <srcFile name="package.mak" src="package.bld"/>
@@ -43,7 +43,7 @@
         isPartial="false"
         xCfgScript="package/cfg/main_pe430.cfg"
         xCfgPrefix="package/cfg/main_pe430"
-        cfgScript="C:/Data/workdir/msp430/final/main.cfg"
+        cfgScript="C:/Data/workdir/msp430/levitating_pingpong/main.cfg"
         cfgArgs="null"
         />
     </configurations>
@@ -55,7 +55,7 @@
         profile="release"
         xCfgScript="package/cfg/main_pe430.cfg"
         xCfgPrefix="package/cfg/main_pe430"
-        cfgScript="C:/Data/workdir/msp430/final/main.cfg"
+        cfgScript="C:/Data/workdir/msp430/levitating_pingpong/main.cfg"
         cfgArgs="null"
         />
     </executables>

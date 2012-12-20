@@ -141,6 +141,7 @@ uint16 fuzzy_controller(int16 input1, int16 input2)
     //for each rule
     for (i = 0; i < NR_RULES; i++)
     {
+    	//calculate the minimum between the membership for each input signal
         temp = min ( map_mf(input1, &in1_mf[rules[i][0]]), map_mf(input2, &in2_mf[rules[i][1]]) );
 
         x += temp * out_mf[rules[i][2]];

@@ -24,11 +24,13 @@ const uint16 lookup[1024] =
 
 void adc_start(void)
 {
+	// ADC Start Conversion - Software trigger
 	ADC10CTL0 |= ADC10SC;
 }
 
 uint16 get_distance(uint16 value)
 {
+	//get the distance from the lookup table in millimeters
 	return lookup[value];
 }
 
@@ -55,6 +57,6 @@ uint16 adc_get_last_result(uint8 opt)
  */
 void ADC10ISRHandler(void)
 {
-	result = ADC10MEM;
-	regulatorFlag = 1;
+	result = ADC10MEM;  //store the result from the ADC
+	regulatorFlag = 1;  //signal a sample has been read
 }
