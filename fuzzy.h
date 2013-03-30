@@ -2,7 +2,7 @@
  * fuzzy.h
  *
  *  Created on: 09.12.2012
- *      Author: xkyve
+ *      Author: pascga2
  */
 
 #ifndef FUZZY_H_

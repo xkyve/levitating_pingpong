@@ -24,14 +24,12 @@ const uint16 lookup[1024] =
 
 void adc_start(void)
 {
-    // ADC Start Conversion - Software trigger
-    ADC10CTL0 |= ADC10SC;
+    ADC10CTL0 |= ADC10SC;  // ADC Start Conversion - Software trigger
 }
 
 uint16 get_distance(uint16 value)
 {
-    //get the distance from the lookup table in millimeters
-    return lookup[value];
+    return lookup[value];  //get the distance from the lookup table in millimeters
 }
 
 uint16 voltage(uint16 data)
