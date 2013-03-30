@@ -30,7 +30,7 @@
  */
 typedef struct _trap_mf
 {
-	/* a < b <= c < d */
+    /* a < b <= c < d */
     int16 a;
     int16 b;
     int16 c;
